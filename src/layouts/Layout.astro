@@ -2,6 +2,7 @@
 import Nav from "../components/Nav";
 import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 import "../styles/global.css";
 
 interface Props {
@@ -74,5 +75,6 @@ const personSchema = {
     </main>
     <Footer />
     <Analytics />
+    <SpeedInsights />
   </body>
 </html>

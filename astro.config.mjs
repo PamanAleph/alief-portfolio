@@ -6,6 +6,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://alieffirmanda.dev',
+  site: 'https://alief-portfolio-pamanalephs-projects.vercel.app',
   integrations: [react(), sitemap()]
 });

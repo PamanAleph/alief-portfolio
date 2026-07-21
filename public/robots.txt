@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alieffirmanda.dev/sitemap-index.xml
+Sitemap: https://alief-portfolio-pamanalephs-projects.vercel.app/sitemap-index.xml
