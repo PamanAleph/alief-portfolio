@@ -4,6 +4,12 @@ import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import "../styles/global.css";
+import "@fontsource-variable/fraunces/standard.css";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/geist-mono/500.css";
+import "@fontsource/geist-mono/600.css";
 
 interface Props {
   title: string;
@@ -60,16 +66,9 @@ const personSchema = {
 
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />}
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
-    <Nav client:load currentPath={currentPath} />
+    <Nav client:idle currentPath={currentPath} />
     <main>
       <slot />
     </main>

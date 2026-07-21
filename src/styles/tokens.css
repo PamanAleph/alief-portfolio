@@ -19,7 +19,7 @@
   --color-focus:    oklch(58% 0.190 40);
 
   /* — Type — */
-  --font-display:  "Fraunces", ui-serif, Georgia, serif;
+  --font-display:  "Fraunces Variable", ui-serif, Georgia, serif;
   --font-body:     "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-outlier:  "Geist Mono", ui-monospace, monospace;
   --font-mono-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
