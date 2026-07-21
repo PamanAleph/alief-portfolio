@@ -1,15 +1,36 @@
 ---
 import Nav from "../components/Nav";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description: string;
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description } = Astro.props;
+const { title, description, jsonLd } = Astro.props;
 const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath, Astro.site);
+const pageTitle = `${title} — Alief Firmanda`;
+const isHome = currentPath === "/";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Muhammad Alief Firmanda",
+  url: Astro.site?.toString(),
+  email: "mailto:aliefbuscode@gmail.com",
+  jobTitle: "Fullstack Engineer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Tangerang Regency",
+    addressRegion: "Banten",
+    addressCountry: "ID",
+  },
+  sameAs: ["https://www.linkedin.com/in/muhammad-alief-firmanda/"],
+};
 ---
 
 <!doctype html>
@@ -20,8 +41,24 @@ const currentPath = Astro.url.pathname;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{title} — Alief Firmanda</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content={isHome ? "website" : "article"} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Alief Firmanda" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />}
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,5 +73,6 @@ const currentPath = Astro.url.pathname;
       <slot />
     </main>
     <Footer />
+    <Analytics />
   </body>
 </html>
