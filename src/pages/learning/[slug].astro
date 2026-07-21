@@ -21,7 +21,7 @@ const dateLabel = entry.data.date.toLocaleDateString("en-US", {
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
-  <section class="hero hero--compact container container--article reveal" style="--i:0">
+  <section class="hero hero--compact container reveal" style="--i:0">
     <a class="link" href="/learning/">&larr; Continuous learning</a>
 
     <p class="num-label" style="margin-top: var(--space-lg);">
@@ -44,7 +44,7 @@ const dateLabel = entry.data.date.toLocaleDateString("en-US", {
     }
   </section>
 
-  <div class="continuation container container--article">
+  <div class="continuation container">
     <div class:list={["entry-layout", { "entry-layout--with-toc": sections.length > 1 }]}>
       <div class="prose measure">
         <Content />
