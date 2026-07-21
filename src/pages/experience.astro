@@ -1,0 +1,131 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Experience"
+  description="Work history, education, and leadership for Muhammad Alief Firmanda — Fullstack Engineer."
+>
+  <section class="hero hero--compact container reveal" style="--i:0">
+    <p class="num-label">01 — WORK</p>
+    <h1 class="hero__title" style="font-size: var(--text-display-s);">
+      Five roles, one thread — ship it, then prove it&rsquo;s safe.
+    </h1>
+  </section>
+
+  <div class="continuation container">
+    <div class="job">
+      <div class="job__meta">
+        <p class="job__org">Cekat.AI <span class="job__place">— PT Teknologi Cekat Indonesia, Tangerang</span></p>
+        <p class="job__dates">Oct 2025 — Present</p>
+      </div>
+      <p class="job__role">Fullstack Engineer</p>
+      <ul class="job__bullets">
+        <li>Architected and deployed a centralized Enterprise SaaS ERP adopted across multiple departments.</li>
+        <li>Engineered a high-concurrency analytics engine with Golang&rsquo;s errgroup across Postgres and ClickHouse, cutting dashboard latency by 65%.</li>
+        <li>Enforced IT governance with a granular audit log system and automated anomaly detection on state-altering changes.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__meta">
+        <p class="job__org">PT Ksatria Mitra Solusindo <span class="job__place">— Surabaya (Remote)</span></p>
+        <p class="job__dates">May 2025 — Oct 2025</p>
+      </div>
+      <p class="job__role">Fullstack Engineer</p>
+      <ul class="job__bullets">
+        <li>Built and maintained backend services with Express.js and MongoDB, cutting API response time by 20%.</li>
+        <li>Integrated AI-powered auto-reply and a ticketing system to streamline customer support.</li>
+        <li>Developed &ldquo;Beliin&rdquo; (proxy purchasing) and &ldquo;Kirimin&rdquo; (international shipping) marketplace modules end to end.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__meta">
+        <p class="job__org">Percetakan Uang Republik Indonesia <span class="job__place">— GovTech, South Jakarta</span></p>
+        <p class="job__dates">Oct 2024 — Oct 2025</p>
+      </div>
+      <p class="job__role">Fullstack Developer Intern</p>
+      <ul class="job__bullets">
+        <li>Migrated the Meterai Elektronik frontend from PHP to Next.js, then to Astro as a layout wrapper over the same React architecture — 50% faster page loads.</li>
+        <li>Designed 60+ secure RESTful endpoints (Express.js, PostgreSQL, JWT, RBAC), cutting API-related bug reports by 65% in QA.</li>
+        <li>Applied role-based data masking on NIK fields and centralized error masking for PII compliance.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__meta">
+        <p class="job__org">President University <span class="job__place">— Bekasi Regency</span></p>
+        <p class="job__dates">Sep 2024 — Dec 2024</p>
+      </div>
+      <p class="job__role">Software Developer Intern</p>
+      <ul class="job__bullets">
+        <li>Led a fullstack accreditation system (Next.js SSR + Express.js/PostgreSQL) for the Internal Quality Assurance Directorate.</li>
+        <li>Built a responsive, role-based management dashboard — 40% faster, 25% lower bounce rate.</li>
+        <li>Implemented RBAC and encrypted dynamic route parameters to prevent ID-enumeration attacks.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__meta">
+        <p class="job__org">PUFA Computing <span class="job__place">— Bekasi Regency</span></p>
+        <p class="job__dates">Nov 2023 — Oct 2024</p>
+      </div>
+      <p class="job__role">Front End Web Developer</p>
+      <ul class="job__bullets">
+        <li>Integrated NextAuth.js login with TOTP-based 2FA, lifting registrations 25% and cutting unauthorized attempts 40%.</li>
+        <li>Shipped SSR plus ARIA and semantic HTML for accessibility and SEO — 25% more organic traffic.</li>
+        <li>Lazy-loaded images and components for a 40% faster initial load.</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="section container reveal" style="--i:1">
+    <p class="num-label">02 — EDUCATION</p>
+    <div class="entry">
+      <div class="entry__meta">
+        <p class="entry__org">President University, Bekasi Regency — Bachelor of Informatics</p>
+        <p class="entry__dates">Sep 2022 — Dec 2025 &middot; GPA 3.66 / 4.00</p>
+      </div>
+      <p class="entry__detail">
+        Software Engineering, Data Structures &amp; Algorithms, Database Systems, Security
+        Compliance &amp; Audit, Network Security. Applied RBAC, data masking, and the OWASP
+        Top 10 in coursework projects.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container reveal" style="--i:2">
+    <p class="num-label">03 — LEADERSHIP &amp; MENTORSHIP</p>
+    <div class="entry">
+      <div class="entry__meta">
+        <p class="entry__org">Internal Capstone Project, President University — Frontend Engineer</p>
+        <p class="entry__dates">Jan 2025 — Jul 2025</p>
+      </div>
+      <p class="entry__detail">
+        Architected a feature-based Next.js structure with strict domain encapsulation; 95%
+        sprint completion rate across the build.
+      </p>
+    </div>
+    <div class="entry">
+      <div class="entry__meta">
+        <p class="entry__org">President University Developer Club — Team Mentor, Frontend Path</p>
+        <p class="entry__dates">Jan 2025 — Jul 2025</p>
+      </div>
+      <p class="entry__detail">
+        Mentored 10+ aspiring developers from React fundamentals through advanced patterns and
+        API integration.
+      </p>
+    </div>
+    <div class="entry">
+      <div class="entry__meta">
+        <p class="entry__org">PUFA Computing — Member, Research &amp; Technology</p>
+        <p class="entry__dates">Nov 2023 — Nov 2024</p>
+      </div>
+      <p class="entry__detail">
+        Pair-programmed with a junior developer on component-based React, Next.js, and
+        TypeScript work; aligned weekly with backend and UI/UX on API specs.
+      </p>
+    </div>
+  </section>
+</Layout>

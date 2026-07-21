@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CopyEmailButton from "../components/CopyEmailButton";
+---
+
+<Layout
+  title="Home"
+  description="Muhammad Alief Firmanda — Fullstack Engineer building scalable, secure, GRC-aligned software from Tangerang, Indonesia."
+>
+  <section class="hero container reveal" style="--i:0">
+    <p class="num-label">01 — HELLO.</p>
+    <h1 class="hero__title">Fullstack engineering, audited by design.</h1>
+    <p class="hero__lede measure">
+      Fullstack Engineer with expertise in designing scalable, secure, and compliant solutions,
+      aligned with governance, risk, and compliance (GRC) standards. Experienced Scrum Master
+      leading Agile teams to deliver high-quality products on time.
+    </p>
+    <div class="hero__cta-row">
+      <a class="link" href="mailto:aliefbuscode@gmail.com">Email me &rarr;</a>
+      <CopyEmailButton client:visible />
+    </div>
+  </section>
+
+  <section class="section container reveal" style="--i:1">
+    <p class="num-label">02 — WHAT I DO</p>
+    <h2 class="section__title">Three things, mostly.</h2>
+    <ul class="capabilities">
+      <li>
+        <h3>Ship fullstack, end to end</h3>
+        <p>
+          React and Next.js or Astro on the front, Node.js, Golang, and PostgreSQL on the back —
+          the same person owns both sides of the request.
+        </p>
+      </li>
+      <li>
+        <h3>Build for governance, not just features</h3>
+        <p>
+          RBAC, audit logs, PII masking, and OWASP-aligned validation, baked in from the first
+          commit rather than bolted on after a finding.
+        </p>
+      </li>
+      <li>
+        <h3>Run the team, not just the code</h3>
+        <p>
+          Scrum Master and mentor — sprint planning, API design reviews, and onboarding
+          ten-plus junior developers into production codebases.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section container reveal" style="--i:2">
+    <p class="num-label">03 — ELSEWHERE</p>
+    <nav class="elsewhere">
+      <a class="link" href="/experience/">Read the full work history &rarr;</a>
+      <a class="link" href="/learning/">See projects &amp; writing &rarr;</a>
+    </nav>
+  </section>
+
+  <section class="section section--tight container reveal" style="--i:3">
+    <p class="num-label">04 — STACK</p>
+    <dl class="spec-sheet">
+      <div class="spec-row">
+        <dt>Core languages</dt>
+        <dd>TypeScript, Golang, Python, JavaScript (ES6+), SQL, PHP</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Backend</dt>
+        <dd>Node.js (Express.js), PostgreSQL, MongoDB, Redis, Laravel, BullMQ</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Frontend</dt>
+        <dd>React.js, Next.js (SSR/ISR), Astro, React Native, Tailwind CSS, Zustand, Redux, SvelteKit</dd>
+      </div>
+      <div class="spec-row">
+        <dt>DevOps</dt>
+        <dd>Docker, Portainer, GitHub Actions (CI/CD), Linux Administration (SSH/VM), Nginx</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Security &amp; quality</dt>
+        <dd>K6 load testing, Jest/Vitest, RBAC design, JWT/OAuth2, OWASP Top 10, PII data masking</dd>
+      </div>
+    </dl>
+  </section>
+</Layout>

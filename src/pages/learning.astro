@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const entries = (await getCollection("learning", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout
+  title="Continuous Learning"
+  description="Projects and writing from Muhammad Alief Firmanda — experiments, systems, and what shipping compliant software actually takes."
+>
+  <section class="hero hero--compact container reveal" style="--i:0">
+    <p class="num-label">01 — PROJECTS &amp; WRITING</p>
+    <h1 class="hero__title" style="font-size: var(--text-display-s);">
+      Things I&rsquo;ve built, and what I&rsquo;m learning from them.
+    </h1>
+    <p class="hero__lede measure">
+      One set, newest first — systems shipped in the roles on the <a class="link" href="/experience/">experience page</a>, and notes written along the way.
+    </p>
+  </section>
+
+  <div class="continuation container">
+    {
+      entries.length > 0 ? (
+        <div class="entry-grid">
+          {entries.map((entry) => (
+            <a class="entry-card" href={`/learning/${entry.id}/`}>
+              <div class="entry-card__meta">
+                <span class="entry-card__type" data-type={entry.data.type}>
+                  {entry.data.type === "project" ? "Project" : "Writing"}
+                </span>
+                <span class="entry-card__date">
+                  {entry.data.date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+              <h3 class="entry-card__title">{entry.data.title}</h3>
+              <p class="entry-card__desc">
+                {entry.data.org && <strong>{entry.data.org}</strong>}
+                {entry.data.org ? " — " : ""}
+                {entry.data.description}
+              </p>
+              {entry.data.tags.length > 0 && (
+                <div class="tag-row entry-card__tags">
+                  {entry.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <h3>Nothing here yet.</h3>
+          <p>
+            This is where projects and writing show up — backend architecture, audit-driven
+            engineering, and what shipping compliant systems actually takes.
+          </p>
+          <a class="link" href="mailto:aliefbuscode@gmail.com">Ask me about it directly &rarr;</a>
+        </div>
+      )
+    }
+  </div>
+</Layout>
