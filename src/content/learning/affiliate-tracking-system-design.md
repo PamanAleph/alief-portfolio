@@ -26,12 +26,14 @@ Actual earnings land in `AffiliateEarning` — one record per order item, storin
 
 Withdrawal is its own state machine — `AffiliateWithdrawal`: `requested → approved → rejected/paid/failed`, minimum Rp100.000, with a snapshot of the bank account at request time, so a later profile edit doesn't retroactively change where money already in flight was supposed to go.
 
-## Three surfaces, one backend
+## Four surfaces, one backend
 
-- **titip-bos-api** — owns all of the above: models, commission engine, wallet ledger, ~19 admin endpoints for application review, tracking, and payout, plus one-off scripts (`fix-missing-commissions.js`, `backfillAffiliateWalletLedger.js`) that tell the honest story of a system patched against real production data issues, not just designed on paper.
-- **titip-bos-admin** — ops-facing: approve/reject/suspend affiliator applications, edit commission rates, review and mark withdrawals paid, inspect click-tracking detail per affiliator.
-- **titip-bos (web)** — the affiliator-facing product: registration, dashboard, link/share generation, performance analytics, wallet and withdrawal UI. This is where an affiliator actually lives day to day.
-- **mobile-app-rn** — API plumbing only (`trackAffiliateClick`, `applyAffiliator`) with no screens consuming it yet. The backend contract exists; the mobile UI is the open gap.
+Built across a marketplace platform I worked on end to end — API, admin dashboard, customer web app, and mobile app.
+
+- **API service** — owns all of the above: models, commission engine, wallet ledger, ~19 admin endpoints for application review, tracking, and payout, plus one-off scripts (`fix-missing-commissions.js`, `backfillAffiliateWalletLedger.js`) that tell the honest story of a system patched against real production data issues, not just designed on paper.
+- **Admin dashboard** — ops-facing: approve/reject/suspend affiliator applications, edit commission rates, review and mark withdrawals paid, inspect click-tracking detail per affiliator.
+- **Customer web app** — the affiliator-facing product: registration, dashboard, link/share generation, performance analytics, wallet and withdrawal UI. This is where an affiliator actually lives day to day.
+- **Mobile app** — API plumbing only (`trackAffiliateClick`, `applyAffiliator`) with no screens consuming it yet. The backend contract exists; the mobile UI is the open gap.
 
 ## What I'd flag as unfinished
 
