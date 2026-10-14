@@ -1,42 +1,50 @@
 ---
-import Nav from "../components/Nav";
-import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import Nav from "../components/layout/Nav";
+import Footer from "../components/layout/Footer.astro";
+import Loader from "../components/layout/Loader.astro";
+import Grain from "../components/layout/Grain.astro";
+import ScrollProgress from "../components/layout/ScrollProgress";
+import SmoothScroll from "../components/layout/SmoothScroll";
+import CustomCursor from "../components/layout/CustomCursor";
+import SceneRoot from "../components/three/SceneRoot";
+import { profile } from "../data/content";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "lenis/dist/lenis.css";
 import "../styles/global.css";
-import "@fontsource-variable/fraunces/standard.css";
-import "@fontsource/ibm-plex-sans/400.css";
-import "@fontsource/ibm-plex-sans/500.css";
-import "@fontsource/ibm-plex-sans/600.css";
-import "@fontsource/geist-mono/500.css";
-import "@fontsource/geist-mono/600.css";
+import displayFont from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
 
 interface Props {
   title: string;
   description: string;
   jsonLd?: Record<string, unknown>;
+  /** Mount the persistent WebGL scene (home page only). */
+  withScene?: boolean;
 }
 
-const { title, description, jsonLd } = Astro.props;
+const { title, description, jsonLd, withScene = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(currentPath, Astro.site);
-const pageTitle = `${title} — Alief Firmanda`;
+const pageTitle = `${title} — ${profile.shortName}`;
 const isHome = currentPath === "/";
 
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Muhammad Alief Firmanda",
+  name: profile.name,
   url: Astro.site?.toString(),
-  email: "mailto:aliefbuscode@gmail.com",
-  jobTitle: "Fullstack Engineer",
+  email: `mailto:${profile.email}`,
+  jobTitle: profile.role,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Tangerang Regency",
     addressRegion: "Banten",
     addressCountry: "ID",
   },
-  sameAs: ["https://www.linkedin.com/in/muhammad-alief-firmanda/"],
+  sameAs: profile.socials.map((s) => s.href),
 };
 ---
 
@@ -45,7 +53,9 @@ const personSchema = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0f" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
     <meta name="google-site-verification" content="MH-bLHIP_smz1K1yMjrQZoo0fcPD1KwEH9WcFIcMETA" />
 
@@ -58,7 +68,7 @@ const personSchema = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:site_name" content="Alief Firmanda" />
+    <meta property="og:site_name" content={profile.shortName} />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary" />
@@ -67,13 +77,38 @@ const personSchema = {
 
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />}
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduced) root.classList.add("no-webgl");
+        var seen = false;
+        try { seen = sessionStorage.getItem("af-intro") === "1"; } catch (e) {}
+        if (!seen && !reduced) root.classList.add("show-loader");
+      })();
+    </script>
+    <noscript>
+      <style>
+        .split__piece { transform: none !important; }
+        [style*="opacity:0"], [style*="opacity: 0"] { opacity: 1 !important; }
+        .hero__poster { display: block !important; }
+      </style>
+    </noscript>
   </head>
   <body>
-    <Nav client:idle currentPath={currentPath} />
-    <main>
+    <a class="skip" href="#main">Skip to content</a>
+    <Loader />
+    <ScrollProgress client:load />
+    <SmoothScroll client:load />
+    <CustomCursor client:load />
+    <Nav client:load currentPath={currentPath} />
+    {withScene && <SceneRoot client:only="react" />}
+    <main id="main">
       <slot />
     </main>
     <Footer />
+    <Grain />
     <Analytics />
     <SpeedInsights />
   </body>

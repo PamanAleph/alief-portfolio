@@ -1,70 +1,37 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/sections/PageHero";
+import LearningList from "../components/sections/LearningList";
+import { learningIntro, profile } from "../data/content";
+import { getWorkItems } from "../lib/learning";
 
-const entries = (await getCollection("learning", ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const items = await getWorkItems();
 ---
 
 <Layout
   title="Continuous Learning"
-  description="Projects and writing from Muhammad Alief Firmanda — experiments, systems, and what shipping compliant software actually takes."
+  description={`Projects and writing from ${profile.name} — experiments, systems, and what shipping compliant software actually takes.`}
 >
-  <section class="hero hero--compact container reveal" style="--i:0">
-    <p class="num-label">01 — PROJECTS &amp; WRITING</p>
-    <h1 class="hero__title" style="font-size: var(--text-display-s);">
-      Things I&rsquo;ve built, and what I&rsquo;m learning from them.
-    </h1>
-    <p class="hero__lede measure">
-      One set, newest first — systems shipped in the roles on the <a class="link" href="/experience/">experience page</a>, and notes written along the way.
-    </p>
-  </section>
+  <PageHero client:load kicker="01 — Projects & writing" title="Learning" sub={learningIntro.title} lede={learningIntro.lede} accent="cyan" label="Learning" />
 
-  <div class="continuation container">
-    {
-      entries.length > 0 ? (
-        <div class="entry-grid">
-          {entries.map((entry) => (
-            <a class="entry-card" href={`/learning/${entry.id}/`}>
-              <div class="entry-card__meta">
-                <span class="entry-card__type" data-type={entry.data.type}>
-                  {entry.data.type === "project" ? "Project" : "Writing"}
-                </span>
-                <span class="entry-card__date">
-                  {entry.data.date.toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-              <h3 class="entry-card__title">{entry.data.title}</h3>
-              <p class="entry-card__desc">
-                {entry.data.org && <strong>{entry.data.org}</strong>}
-                {entry.data.org ? " — " : ""}
-                {entry.data.description}
-              </p>
-              {entry.data.tags.length > 0 && (
-                <div class="tag-row entry-card__tags">
-                  {entry.data.tags.map((tag) => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-              )}
+  <section class="section section--tight" data-section="page" data-accent="cyan" data-label="Index" aria-label="Projects and writing">
+    <div class="container">
+      {
+        items.length > 0 ? (
+          <LearningList client:visible items={items} />
+        ) : (
+          <div class="empty">
+            <h2 class="empty__title">Nothing here yet.</h2>
+            <p>
+              This is where projects and writing show up — backend architecture, audit-driven engineering, and what
+              shipping compliant systems actually takes.
+            </p>
+            <a class="link-arrow" href={`mailto:${profile.email}`}>
+              Ask me about it directly <span aria-hidden="true">→</span>
             </a>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-state">
-          <h3>Nothing here yet.</h3>
-          <p>
-            This is where projects and writing show up — backend architecture, audit-driven
-            engineering, and what shipping compliant systems actually takes.
-          </p>
-          <a class="link" href="mailto:aliefbuscode@gmail.com">Ask me about it directly &rarr;</a>
-        </div>
-      )
-    }
-  </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
 </Layout>

@@ -1,0 +1,34 @@
+---
+import { profile } from "../../data/content";
+import { Marquee } from "../ui/Marquee";
+import { BackToTop, LocalTime } from "./FooterControls";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="foot" data-section="footer" data-accent="lime" data-bg="inherit" data-label="Footer">
+  <Marquee
+    client:visible
+    className="foot__marquee"
+    items={[profile.name, profile.role, profile.tagline, profile.location]}
+    outline="none"
+    speed={-2}
+  />
+  <div class="foot__band container">
+    <div class="foot__mast">
+      <p class="foot__wordmark">{profile.shortName}<span class="nav__dot">.</span></p>
+      <p class="foot__tagline">{profile.tagline}</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/experience/">Experience</a>
+      <a href="/learning/">Continuous Learning</a>
+      <a href={`mailto:${profile.email}`}>Email &rarr;</a>
+    </nav>
+  </div>
+  <div class="foot__meta container">
+    <p>&copy; {year} {profile.name} &middot; {profile.location}</p>
+    <LocalTime client:visible />
+    <BackToTop client:visible />
+  </div>
+</footer>

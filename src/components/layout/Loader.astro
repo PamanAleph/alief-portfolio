@@ -1,0 +1,45 @@
+---
+/**
+ * One-time intro: a 0–100 counter and the monogram wipe away via clip-path.
+ * Shown once per session, never under reduced motion or without JS, and
+ * skippable with a click or any key. Visibility is decided by an inline head
+ * script (see Layout.astro) so returning visitors never see a flash.
+ */
+import { profile } from "../../data/content";
+---
+
+<div class="loader" id="loader" aria-hidden="true">
+  <span class="loader__name">{profile.shortName}</span>
+  <span class="loader__count" id="loader-count">0</span>
+  <span class="loader__hint">Click to skip</span>
+</div>
+
+<script is:inline>
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains("show-loader")) return;
+    var el = document.getElementById("loader");
+    var count = document.getElementById("loader-count");
+    var DURATION = 1300;
+    var start = performance.now();
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      try { sessionStorage.setItem("af-intro", "1"); } catch (e) {}
+      root.classList.add("loader-out");
+      setTimeout(function () { root.classList.remove("show-loader", "loader-out"); }, 900);
+    }
+    function tick(now) {
+      if (done) return;
+      var t = Math.min(1, (now - start) / DURATION);
+      var eased = 1 - Math.pow(1 - t, 3);
+      count.textContent = String(Math.round(eased * 100));
+      if (t < 1) requestAnimationFrame(tick);
+      else finish();
+    }
+    requestAnimationFrame(tick);
+    el.addEventListener("click", finish);
+    window.addEventListener("keydown", finish, { once: true });
+  })();
+</script>

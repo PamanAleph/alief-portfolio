@@ -1,70 +1,82 @@
-/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V5
- * genre: editorial · macrostructure: Specimen · theme: Specimen (custom warm-ink, anchor hue 40)
- * enrichment: none (typography only) · nav: N6 Newspaper masthead · footer: Ft1 Mast-headed
- * fonts: Fraunces (display) · IBM Plex Sans (body) · Geist Mono (outlier — wordmark only, 2 slots)
- * contrast: pass (40–41) · chrome: pass (47) · tokens: pass (48) · responsive: pass (34, 49–52)
- * honest: pass (46, real résumé data — no invented metrics) · icons: pass (30, none used)
+/* Design tokens — loud editorial, dark canvas, type-first.
+ * Every colour, size, radius and timing used across the site comes from here.
  */
 
 :root {
-  /* — Colour — warm-ink anchor, hue 40 — */
-  --color-paper:    oklch(97% 0.012 40);
-  --color-paper-2:  oklch(94% 0.014 40);
-  --color-rule:     oklch(83% 0.012 40);
-  --color-neutral:  oklch(56% 0.010 40);
-  --color-muted:    oklch(42% 0.010 35);
-  --color-ink:      oklch(19% 0.012 40);
-  --color-accent:   oklch(52% 0.170 35);
-  --color-accent-ink: oklch(98% 0.010 40);
-  --color-focus:    oklch(58% 0.190 40);
+  /* — Colour: canvas — */
+  --color-bg: #0a0a0f;
+  --color-surface: #14141c;
+  --color-surface-2: #1c1c26;
+  --color-line: #26262f;
+  --color-ink: #f5f3ee;
+  --color-ink-dark: #0a0a0f;
+  --color-muted: #9a9aa8; /* 7.1:1 on --color-bg */
+
+  /* — Colour: accents — */
+  --violet: #7c3aed;
+  --pink: #ff3d81;
+  --lime: #c8ff3d;
+  --cyan: #22d3ee;
+  --orange: #ff8a3d;
+
+  /* Live theme — rewritten per section by the section observer */
+  --accent: var(--lime);
+  --page-bg: var(--color-bg);
+  --page-ink: var(--color-ink);
 
   /* — Type — */
-  --font-display:  "Fraunces Variable", ui-serif, Georgia, serif;
-  --font-body:     "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-outlier:  "Geist Mono", ui-monospace, monospace;
-  --font-mono-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --text-xs:   0.64rem;
-  --text-sm:   0.8rem;
-  --text-base: 1rem;
-  --text-md:   1.25rem;
-  --text-lg:   1.5625rem;
-  --text-xl:   1.9531rem;
-  --text-2xl:  2.4414rem;
-  --text-3xl:  3.0518rem;
-  --text-4xl:  3.8147rem;
-  --text-display:   clamp(2.75rem, 5vw + 1rem, 5.25rem);
-  --text-display-s: clamp(2.25rem, 3.5vw + 1rem, 3.8rem);
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5rem;
+  --text-hero: clamp(3.2rem, 14.5vw, 15rem);
+  --text-section: clamp(3rem, 9vw, 9rem);
+  --text-statement: clamp(2.6rem, 8.5vw, 8.5rem);
+  --text-display: clamp(2.4rem, 6vw, 5.5rem);
+  --text-manifesto: clamp(1.9rem, 4.4vw, 4.2rem);
+  --text-index: clamp(4rem, 12vw, 11rem);
 
-  /* — Space — 4pt scale — */
-  --space-3xs: 0.125rem;
-  --space-2xs: 0.25rem;
-  --space-xs:  0.5rem;
-  --space-sm:  0.75rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2.5rem;
-  --space-2xl: 4rem;
-  --space-3xl: 6rem;
-  --space-4xl: 9rem;
+  --leading-tight: 0.86;
+  --tracking-tight: -0.045em;
 
-  /* — Motion — */
-  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-micro: 120ms;
-  --dur-short: 220ms;
-  --dur-long:  420ms;
+  /* — Space: 8px grid — */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-section: clamp(6rem, 14vw, 14rem);
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --max-width: 1440px;
+  --measure: 65ch;
 
-  /* — Z-index — */
-  --z-base:     1;
-  --z-raised:   10;
-  --z-dropdown: 100;
-  --z-sticky:   200;
-  --z-modal:    400;
-  --z-toast:    500;
-  --z-tooltip:  600;
+  /* — Shape — */
+  --radius-card: 24px;
+  --radius-tile: 20px;
+  --radius-pill: 999px;
 
-  /* — Rule weight — */
-  --rule-hairline: 1px;
+  /* — Motion (mirrors src/lib/motion.ts) — */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-micro: 200ms;
+  --dur-element: 700ms;
+  --dur-section: 1200ms;
+
+  /* — Layers — */
+  --z-canvas: 0;
+  --z-content: 1;
+  --z-float: 5;
+  --z-nav: 50;
+  --z-menu: 60;
+  --z-progress: 70;
+  --z-grain: 80;
+  --z-cursor: 90;
+  --z-loader: 100;
 }
