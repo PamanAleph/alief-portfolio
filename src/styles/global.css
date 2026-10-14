@@ -80,9 +80,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .is-outline .split__char, .is-outline .split__piece { -webkit-text-stroke: inherit; }
 
-.is-gradient,
-.is-gradient .split__piece,
-.is-gradient .split__char {
+/* Gradient is painted only on the innermost glyph element. An ancestor with
+ * background-clip:text whose children are transformed (proximity hover) makes
+ * Chromium paint those children's glyphs into the ancestor's mask at the wrong
+ * offset — the "ghost letters" bug. */
+.is-gradient .split__char,
+.is-gradient .split__piece:not(:has(.split__char)) {
   background: linear-gradient(90deg, var(--violet), var(--pink) 55%, var(--orange));
   -webkit-background-clip: text;
   background-clip: text;
