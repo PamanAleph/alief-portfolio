@@ -9,6 +9,8 @@ const learning = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     org: z.string().optional(),
+    image: z.string().optional(),
+    links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
     draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
   }),

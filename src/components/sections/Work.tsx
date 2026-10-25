@@ -50,12 +50,18 @@ function Preview({ item }: { item: WorkItem }) {
       data-cursor="Read"
       aria-hidden="true"
     >
-      <span className="plate__grid" />
-      <span className="plate__ripple" />
-      <span className="plate__word" data-text={lead}>
-        {lead}
-      </span>
-      <span className="plate__tags">{item.tags.slice(1, 4).join(" · ")}</span>
+      {item.image ? (
+        <img className="plate__img" src={item.image} alt="" loading="lazy" decoding="async" />
+      ) : (
+        <>
+          <span className="plate__grid" />
+          <span className="plate__ripple" />
+          <span className="plate__word" data-text={lead}>
+            {lead}
+          </span>
+          <span className="plate__tags">{item.tags.slice(1, 4).join(" · ")}</span>
+        </>
+      )}
     </motion.div>
   );
 }

@@ -133,25 +133,29 @@ export const experienceHeadline = "Five roles, one thread — ship it, then prov
 
 export const jobs: Job[] = [
   {
-    org: "Cekat.AI",
-    place: "PT Teknologi Cekat Indonesia, Tangerang",
-    role: "Fullstack Engineer",
-    dates: "Oct 2025 — Present",
+    org: "PT Ksatria Mitra Solusindo",
+    place: "Surabaya (Remote)",
+    role: "Fullstack & DevOps Engineer (Part-time)",
+    dates: "May 2025 — Present",
     bullets: [
-      "Architected and deployed a centralized Enterprise SaaS ERP adopted across multiple departments.",
-      "Engineered a high-concurrency analytics engine with Golang’s errgroup across Postgres and ClickHouse, cutting dashboard latency by 65%.",
-      "Enforced IT governance with a granular audit log system and automated anomaly detection on state-altering changes.",
+      "Engineered an automated cross-border marketplace with real-time exchange rates and affiliate tracking, replacing manual social-media order handling.",
+      "Built the “Beliin” daily scraping engine, syncing 3,000+ foreign products (15,000+ SKUs) and eliminating 100% of manual catalog entry.",
+      "Developed the “Kirimin” logistics module, integrating nationwide shipping APIs and internal warehousing to automate order fulfillment end to end.",
+      "Integrated a context-aware AI support agent with internal data tooling and human hand-off, sharply cutting tier-1 support volume.",
+      "Designed Docker-based GitHub Actions CI/CD with branch-driven staging and production releases to Tencent Cloud VMs — every merge ships.",
     ],
   },
   {
-    org: "PT Ksatria Mitra Solusindo",
-    place: "Surabaya (Remote)",
+    org: "Cekat.AI",
+    place: "PT Teknologi Cekat Indonesia, Tangerang",
     role: "Fullstack Engineer",
-    dates: "May 2025 — Oct 2025",
+    dates: "Oct 2025 — Oct 2026",
     bullets: [
-      "Built and maintained backend services with Express.js and MongoDB, cutting API response time by 20%.",
-      "Integrated AI-powered auto-reply and a ticketing system to streamline customer support.",
-      "Developed “Beliin” (proxy purchasing) and “Kirimin” (international shipping) marketplace modules end to end.",
+      "Independently built an event-driven audit log system for the Back Office, making every state-altering change traceable and reconstructable to meet GRC compliance requirements.",
+      "Instrumented wide event logging and built a dedicated Datadog dashboard for billing error tracking and API latency, so engineers resolve billing issues without manual log digging.",
+      "Built the internal billing system — 100+ transactions monthly, IDR 1B+ gross value — across invoicing, discounts, subscriptions, and payments (Midtrans, Stripe, manual).",
+      "Built a weighted Business Health Score engine tracking 62K+ businesses, giving Account Managers real-time Healthy/Watch/At-Risk signals for renewal and upsell prioritization.",
+      "Engineered a company-wide analytics system in Go with goroutines for parallel processing, powering real-time dashboards adopted by leadership and C-level to guide product and go-to-market strategy.",
     ],
   },
   {
@@ -269,5 +273,8 @@ export interface WorkItem {
   type: "project" | "writing";
   dateLabel: string;
   org?: string;
+  /** Screenshot path under /public, shown instead of the typographic plate. */
+  image?: string;
+  links: { label: string; url: string }[];
   tags: string[];
 }

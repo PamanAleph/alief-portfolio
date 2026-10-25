@@ -15,6 +15,8 @@ export async function getWorkItems(): Promise<WorkItem[]> {
       type: entry.data.type,
       dateLabel: entry.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }),
       org: entry.data.org,
+      image: entry.data.image,
+      links: entry.data.links,
       tags: entry.data.tags,
     }));
 }

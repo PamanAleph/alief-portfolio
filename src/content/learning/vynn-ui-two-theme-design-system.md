@@ -1,10 +1,25 @@
 ---
-type: "writing"
+type: "project"
 title: "Vynn UI: Building a Design System with Two Deliberately Opposite Themes"
-description: "Why I built a token-driven React design system with two themes that pull in opposite directions — Classic and Neobrutalism — and how the token pipeline, component templates, and the theme conflict itself became the real proof of the architecture."
+description: "Open-source React design system: 49 components in two themes, Classic and Neobrutalism, sharing one token system — and how the token pipeline, component templates, and the theme conflict became the proof of the architecture."
 date: 2026-08-06
-tags: ["Design Systems", "React", "TypeScript", "Tailwind CSS", "Component Architecture"]
+org: "Open source"
+links:
+  - label: "Docs"
+    url: "https://vynn-ui-docs.vercel.app/"
+  - label: "GitHub"
+    url: "https://github.com/vynn-ui/vynn-ui"
+tags: ["Design Systems", "React", "TypeScript", "Tailwind CSS", "Open Source"]
 ---
+
+## At a glance
+
+[Vynn UI](https://github.com/vynn-ui/vynn-ui) is an open-source, two-theme design system for React and TypeScript, built on Base UI, Tailwind CSS v4, and compound component APIs. The same 49 components ship in Classic and Neobrutalism, restyled from the ground up rather than palette-swapped. The repo is a pnpm workspaces and Turborepo monorepo, and it is still a work in progress.
+
+The [docs site](https://vynn-ui-docs.vercel.app/) renders the real components side by side in both themes, with a Storybook for browsing each one.
+
+## Why it exists
+
 
 Most component libraries give you one visual language. Want a genuinely different look — not just a new accent color, but different border weight, different shadow physics, different press behavior — and the usual answer is fork it or rewrite it. I wanted to prove that doesn't have to be true: one set of React components, two visual identities that actively pull against each other, with the components themselves never knowing which theme is active.
 

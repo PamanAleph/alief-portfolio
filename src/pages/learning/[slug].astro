@@ -49,6 +49,18 @@ const entrySchema = {
         </h1>
         <p class="article-hero__desc">{entry.data.description}</p>
         {
+          entry.data.links.length > 0 && (
+            <p class="article-hero__links">
+              {entry.data.links.map((l) => (
+                <a class="link-arrow" href={l.url} target="_blank" rel="noopener noreferrer">
+                  {l.label} <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </p>
+          )
+        }
+        {entry.data.image && <img class="article-hero__shot" src={entry.data.image} alt={`Screenshot of ${lead?.trim()}`} width="1568" height="753" />}
+        {
           entry.data.tags.length > 0 && (
             <ul class="pills" aria-label="Tags">
               {entry.data.tags.map((tag) => (
