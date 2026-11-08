@@ -5,11 +5,13 @@ description: "Transport management system for Indonesian logistics teams: orders
 date: 2026-11-08
 org: "Tantayu"
 image: "/images/tantayu.png"
-links: []
+links:
+  - label: "tantayu.com"
+    url: "https://tantayu.com/"
 tags: ["Co-founder", "Product Management", "Strategy", "Logistics", "Route Intelligence", "SaaS"]
 ---
 
-Tantayu is a transport management system (TMS) for teams that move goods by truck. Orders, loads, trips, drivers, proof of delivery, and billing quantities live in one flow instead of being scattered across chats and spreadsheets. It ships as five projects: a Go backend, a React web and driver app, a login and account app, an Astro landing page, and a brand pack.
+[Tantayu](https://tantayu.com/) is a transport management system (TMS) for teams that move goods by truck. Orders, loads, trips, drivers, proof of delivery, and billing quantities live in one flow instead of being scattered across chats and spreadsheets. It ships as five projects: a Go backend, a React web and driver app, a login and account app, an Astro landing page, and a brand pack.
 
 ## My role
 
